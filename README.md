@@ -1,0 +1,2 @@
+# Demo cordova-electron application with an SQLite plugin
+A demo Cordova application with the cordova-sqlite-storage plugin, using the Cordova's newest supported platform for building Electron applications.
