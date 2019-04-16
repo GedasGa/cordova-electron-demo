@@ -15,5 +15,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon src="res/electron/icons8-darth-vader-512.png" />
     <preference name="ElectronSettingsFilePath" value="res/electron/settings.json" />
 </widget>
