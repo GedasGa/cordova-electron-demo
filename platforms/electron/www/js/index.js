@@ -65,11 +65,11 @@ var app = {
         const img = document.querySelector('#profile-image');
         const video = document.querySelector('#video-container');
 
+        const canvas = document.createElement('canvas');
+
         const constraints = {
             video: {width: {exact: 200}, height: {exact: 150}}
         };
-
-        const canvas = document.createElement('canvas');
 
         captureVideoButton.onclick = function() {
             navigator.mediaDevices.getUserMedia(constraints).
@@ -82,6 +82,7 @@ var app = {
             canvas.getContext('2d').drawImage(video, 0, 0);
             // Other browsers will fall back to image/png
             img.src = canvas.toDataURL('image/webp');
+            // If the video source Object is set, stop all tracks
             if (video.srcObject) {
                 video.srcObject.getTracks().forEach(function(track) {
                     track.stop();
