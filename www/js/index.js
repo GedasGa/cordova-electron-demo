@@ -29,6 +29,12 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
+        if (this.hasGetUserMedia()) {
+            console.log('You are all set!');
+            this.takePicture();
+        } else {
+            alert('getUserMedia() is not supported by your browser :/');
+        }
     },
 
     disableFormSubmission: function() {
@@ -46,6 +52,52 @@ var app = {
                 }, false);
             });
         }, false);
+    },
+
+    hasGetUserMedia: function () {
+        return !!(navigator.mediaDevices &&
+            navigator.mediaDevices.getUserMedia);
+    },
+
+    takePicture: function () {
+        const captureVideoButton = document.querySelector('#open-camera');
+        const screenshotButton = document.querySelector('#camera-capture');
+        const img = document.querySelector('#profile-image');
+        const video = document.querySelector('#video-container');
+
+        const canvas = document.createElement('canvas');
+
+        const constraints = {
+            video: {width: {exact: 200}, height: {exact: 150}}
+        };
+
+        captureVideoButton.onclick = function() {
+            navigator.mediaDevices.getUserMedia(constraints).
+            then(handleSuccess).catch(handleError);
+        };
+
+        screenshotButton.onclick = function() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            // Other browsers will fall back to image/png
+            img.src = canvas.toDataURL('image/webp');
+            // If the video source Object is set, stop all tracks
+            if (video.srcObject) {
+                video.srcObject.getTracks().forEach(function(track) {
+                    track.stop();
+                });
+            }
+        };
+
+        function handleSuccess(stream) {
+            screenshotButton.disabled = false;
+            video.srcObject = stream;
+        }
+
+        function handleError(error) {
+            console.error('Error: ', error);
+        }
     }
 };
 

@@ -75,9 +75,10 @@
                             </button>
                         </div>
                         <div class="modal-body text-center rounded">
+                            <video id="video-container" autoplay></video>
                         </div>
                         <div class="modal-footer">
-                            <button id="cordova-camera-capture" type="button" class="btn btn-primary" data-dismiss="modal">Capture</button>
+                            <button id="camera-capture" type="button" class="btn btn-primary" data-dismiss="modal">Capture</button>
                         </div>
                     </div>
                 </div>
@@ -92,7 +93,7 @@
                 </div>
                 <h3>Personal info</h3>
 
-                <form class="form-horizontal needs-validation" novalidate>
+                <form class="form-horizontal needs-validation" action="post" novalidate>
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
                             <label for="first-name">First name</label>
