@@ -74,8 +74,9 @@ var app = {
         };
 
         captureVideoButton.onclick = function() {
-            navigator.mediaDevices.getUserMedia(constraints).
-            then(handleSuccess).catch(handleError);
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(handleSuccess)
+                .catch(handleError);
         };
 
         screenshotButton.onclick = function() {
