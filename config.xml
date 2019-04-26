@@ -28,7 +28,7 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <platform name="electron">
-        <icon src="res/electron/icons8-darth-vader-512.png" />
         <preference name="ElectronSettingsFilePath" value="res/electron/settings.json" />
     </platform>
+    <icon src="res/icons8-darth-vader-512.png" />
 </widget>
