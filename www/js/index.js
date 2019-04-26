@@ -47,6 +47,8 @@ var app = {
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
+                    } else {
+                        alert('Form submitted!');
                     }
                     form.classList.add('was-validated');
                 }, false);
@@ -72,8 +74,9 @@ var app = {
         };
 
         captureVideoButton.onclick = function() {
-            navigator.mediaDevices.getUserMedia(constraints).
-            then(handleSuccess).catch(handleError);
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(handleSuccess)
+                .catch(handleError);
         };
 
         screenshotButton.onclick = function() {
